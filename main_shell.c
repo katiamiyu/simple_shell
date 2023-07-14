@@ -16,7 +16,7 @@ int main(void)
 
 	if (read == -1)
 	{
-		printf("Unsuccessful");
+		perror("Unsuccessful");
 		free(buffer);
 		return (1);
 	}
