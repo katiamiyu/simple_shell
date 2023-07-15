@@ -12,17 +12,20 @@ int main(void)
 	size_t len = 0;
 	ssize_t read;
 
-	read = getline(&buffer, &len, stdin);
-
-	if (read == -1)
+	while (1)
 	{
-		perror("Unsuccessful");
-		free(buffer);
-		return (1);
+		printf("($) ");
+		read = getline(&buffer, &len, stdin);
+
+		/* track eol condition */
+		if (read == -1)
+		{
+			return (1);
+		}
+
+		printf("($) %s", buffer);
 	}
-	
-	printf("Buffer: %s", buffer);
-	printf("Number of char read exclude delim(\\n): %ld\n", read);
+
 	free(buffer);
 	return (0);
 }
