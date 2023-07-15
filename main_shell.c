@@ -3,8 +3,7 @@
  * Return: 0 on sucsess
  */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "main_shell.h"
 
 int main(void)
 {
@@ -15,7 +14,7 @@ int main(void)
 	while (1)
 	{
 		printf("($) ");
-		read = getline(&buffer, &len, stdin);
+		read = _getline(&buffer, &len, stdin);
 
 		/* track eol condition */
 		if (read == -1)
