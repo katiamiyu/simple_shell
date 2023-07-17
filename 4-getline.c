@@ -13,43 +13,41 @@
 
 ssize_t  _getline(char **ptr_buff, size_t *ptr_size, FILE *input_stream)
 {
-	ssize_t buffer,  len;
+	ssize_t buff_size = *ptr_size,  len = 0;
 	int ch;
 	char *new_buffer;
 
-	if (ptr_buff == NULL || ptr_size == NULL)
-		return (-1);
-
-	buffer = *ptr_size;
-	len = 0;
+	/* Checks buffer, allocates memory and handle error */
+	if (*ptr_buff == NULL)
+	{
+		buff_size = 128;
+		*ptr_buff = malloc(buff_size * sizeof(char));
+		if (*ptr_buff == NULL)
+			return (-1);
+	}
 
 	while ((ch = fgetc(input_stream)) != EOF)
 	{
-		/* Checks if line length is lager than allocated buffer size */
-		if (len >= buffer - 1)
+		/* Checks and resizes the buffer_size by doubling it */
+		/* if it can't hold entire line, then reallocate memory */
+		if (len >= buff_size - 1)
 		{
-			buffer *= 2;
-
-			/* Resizes the buffer by doubling it */
-			/* if it's too small to hold entire line */
-			new_buffer = realloc(*ptr_buff, buffer);
+			buff_size *= 2;
+			new_buffer = realloc(*ptr_buff, buff_size);
 			if (new_buffer == NULL)
+			{
+				free(*ptr_buff);
 				return (-1);
-
+			}
 			*ptr_buff = new_buffer;
-			*ptr_size = buffer;
 		}
 
 		(*ptr_buff)[len++] = ch;
-
 		if (ch == '\n')
 			break;
 	}
-
-	(*ptr_buff)[len] = '\0';
-
 	if (len == 0 && ch == EOF)
 		return (-1);
-
+	(*ptr_buff)[len] = '\0';
 	return (len);
 }

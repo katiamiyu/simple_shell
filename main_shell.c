@@ -19,12 +19,15 @@ int main(void)
 		/* track eol condition */
 		if (read == -1)
 		{
+			free(buffer);
 			return (1);
 		}
 
 		printf("($) %s", buffer);
+		free(buffer);
+		buffer = NULL;
+
 	}
 
-	free(buffer);
 	return (0);
 }
