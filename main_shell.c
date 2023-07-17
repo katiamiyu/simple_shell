@@ -23,9 +23,9 @@ int main(void)
 			return (1);
 		}
 
-		printf("Command not available %s\n", buffer);
+		printf("Command not available %s", buffer);
+		free(buffer);
+		buffer = NULL;
 	}
-
-	free(buffer);
 	return (0);
 }
