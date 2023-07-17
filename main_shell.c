@@ -23,11 +23,9 @@ int main(void)
 			return (1);
 		}
 
-		printf("($) %s", buffer);
-		free(buffer);
-		buffer = NULL;
-
+		printf("Command not available %s\n", buffer);
 	}
 
+	free(buffer);
 	return (0);
 }
