@@ -1,7 +1,7 @@
 #include "main_shell.h"
 /**
  * _execmd - execute the commands
- * @argv: array of commands
+ * @argv: array of commands (parameters)
  * @str: string of names
  * Return: 0 success
  */

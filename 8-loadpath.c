@@ -1,21 +1,22 @@
 #include "main_shell.h"
 /**
  * _loadpath - get the path of a command
- * @token: strung of command
+ * @token: string of command
  * Return: char  NULL || fulladdress
  */
 char *_loadpath(char *token)
 {
-	char *path, *path_copy, *path_token, *file_path;
+	char *path, *path_cpy, *path_token, *file_path;
 	int token_len, dir_len;
 	struct stat buffer;
 
 	path = getenv("PATH");
 	if (path)
 	{
-		path_copy = strdup(path);
+		path_cpy = strdup(path);
 		token_len = strlen(token);
-		path_token = strtok(path_copy, ":");
+		path_token = strtok(path_cpy, ":");
+
 		while (path_token != NULL)
 		{
 			dir_len = strlen(path_token);
@@ -26,7 +27,7 @@ char *_loadpath(char *token)
 			strcat(file_path, "\0");
 			if (stat(file_path, &buffer) == 0)
 			{
-				free(path_copy);
+				free(path_cpy);
 				return (file_path);
 			}
 			else
@@ -35,7 +36,7 @@ char *_loadpath(char *token)
 				path_token = strtok(NULL, ":");
 			}
 		}
-		free(path_copy);
+		free(path_cpy);
 		if (stat(token, &buffer) == 0)
 			return (token);
 		return (NULL);

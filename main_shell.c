@@ -28,6 +28,7 @@ int main(int argc, char **argv)
 		/* track eol condition */
 		if (read == -1)
 		{
+			free(buffer);
 			return (1);
 		}
 		/* tokenize input and load command */

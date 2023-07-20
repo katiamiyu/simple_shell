@@ -2,22 +2,22 @@
 #include <errno.h>
 
 /**
- * exit_shell - terminates the shell
+ * _exit_shell - terminates the shell
  * @argv: cammand instruction
  * Return: Exit on 0 (success)
  */
-int exit_shell(char **argv)
+int _exit_shell(char **argv)
 {
 	(void)argv;
 
 	exit(EXIT_SUCCESS);
 }
 /**
- * cd_shell - switch from pwd
+ * _cd_shell - switch from pwd
  * @argv: dir name to switch
  * Return: Exit on 1 (Success)
  */
-int cd_shell(char **argv)
+int _cd_shell(char **argv)
 {
 	if (argv[1] == NULL)
 	{
