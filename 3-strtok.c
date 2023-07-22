@@ -1,47 +1,65 @@
+#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /**
-* _strtok - Breaks a parsed null-termited string(str) into a nonempty tokens
-* @str: param, string to be parsed
-* @delim: Set of bytes that delimit the tokens in the string
-* Return: A pointer to the next nonempty token or NULL if no more tokens
-*/
-
-#include "main_shell.h"
-
-char *_strtok(char *restrict str, const char *restrict delim)
+ * _strtok - split a string into tokens
+ * @str: string to be split
+ * @delim: delimeter characters
+ * Return: a pointer to the first token in the string, or NULL
+ */
+char *_strtok(char *str, const char *delim)
 {
-	#define YES 1
-	#define NO 0
-	static char *next_token;
-	const char *sep;
-	char *token;
-	int found_sep = NO;
+	static char *dup_str;
+	char *result;
 
-	if (str != NULL)
-		next_token = str;
+	if (!str)
+		str = dup_str;
 
-	if (next_token == NULL)
+	if (!str)
 		return (NULL);
 
-	token = next_token;
-	while (*next_token != '\0')
+	while (1)
 	{
-		for (sep = delim; *sep != '\0'; sep++)
+		if (check_delim(*str, delim))
 		{
-			if (*next_token == *delim)
-			{
-				found_sep = YES;
-				break;
-			}
+			str++;
+			continue;
 		}
-		if (found_sep)
-		{
-			*next_token = '\0';
-			next_token++;
-			break;
-		}
-		next_token++;
+		if (*str == '\0')
+			return (NULL);
+		break;
 	}
-	if (*token == '\0')
-		return (NULL);
-	return (token);
+	result = str;
+	while (1)
+	{
+		if (*str == '\0')
+		{
+			dup_str = str;
+			return (result);
+		}
+		if (check_delim(*str, delim))
+		{
+			*str = '\0';
+			dup_str = str + 1;
+			return (result);
+		}
+		str++;
+	}
+}
+/**
+ * check_delim - check for delimination
+ * @c: character to be checked
+ * @delim: string of deliminators
+ * Return: 1  (success) 0 (failed)
+ */
+unsigned int check_delim(char c, const char *delim)
+{
+	while (*delim != '\0')
+	{
+		if (c == *delim)
+			return (1);
+		delim++;
+	}
+	return (0);
 }

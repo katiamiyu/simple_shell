@@ -36,13 +36,6 @@ int main(int argc, char **argv)
 		}
 		/* tokenize input and load command */
 		args = _tokenize(buffer);
-
-
-		
-
-
-
-
 		_runbuiltins(args, argv[0]);
 	}
 
