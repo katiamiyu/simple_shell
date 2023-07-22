@@ -6,8 +6,11 @@
  */
 
 #include "main_shell.h"
+
+
 #include <stdio.h>
 #include <stdlib.h>
+
 
 int main(int argc, char **argv)
 {
@@ -23,7 +26,7 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		printf("($) ");
-		read = getline(&buffer, &len, stdin);
+		read = _getline(&buffer, &len, stdin);
 
 		/* track eol condition */
 		if (read == -1)
@@ -34,10 +37,17 @@ int main(int argc, char **argv)
 		/* tokenize input and load command */
 		args = _tokenize(buffer);
 
+
+		
+
+
+
+
 		_runbuiltins(args, argv[0]);
 	}
 
 	free(args);
 	free(buffer);
+
 	return (0);
 }
