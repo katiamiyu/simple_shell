@@ -15,6 +15,7 @@ int _cd_shell(char **argv);
 int _execmd(char **argv, char *str);
 char *_loadpath(char *command);
 int _runbuiltins(char **argv, char *str);
+unsigned int _check_delim(char c, const char *delim);
 char *_strtok(char *str, const char *delim);
 ssize_t _getline(char **ptr_buff, size_t *ptr_size, FILE *input_stream);
 

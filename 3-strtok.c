@@ -1,17 +1,15 @@
-#include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "main_shell.h"
+#define YES 1
 /**
- * _strtok - split a string into tokens
- * @str: string to be split
- * @delim: delimeter characters
- * Return: a pointer to the first token in the string, or NULL
+ * _strtok - seperate strings into tokens
+ * @str: string parameter
+ * @delim: delimeter char(s)
+ * Return: pointer to first token of the string or NULL
  */
 char *_strtok(char *str, const char *delim)
 {
 	static char *dup_str;
-	char *result;
+	char *res;
 
 	if (!str)
 		str = dup_str;
@@ -19,9 +17,9 @@ char *_strtok(char *str, const char *delim)
 	if (!str)
 		return (NULL);
 
-	while (1)
+	while (YES)
 	{
-		if (check_delim(*str, delim))
+		if (_check_delim(*str, delim))
 		{
 			str++;
 			continue;
@@ -30,30 +28,30 @@ char *_strtok(char *str, const char *delim)
 			return (NULL);
 		break;
 	}
-	result = str;
-	while (1)
+	res = str;
+	while (YES)
 	{
 		if (*str == '\0')
 		{
 			dup_str = str;
-			return (result);
+			return (res);
 		}
-		if (check_delim(*str, delim))
+		if (_check_delim(*str, delim))
 		{
 			*str = '\0';
 			dup_str = str + 1;
-			return (result);
+			return (res);
 		}
 		str++;
 	}
 }
 /**
- * check_delim - check for delimination
- * @c: character to be checked
- * @delim: string of deliminators
- * Return: 1  (success) 0 (failed)
+ * _check_delim - check for delimination
+ * @c: char parameter
+ * @delim: string parameter
+ * Return: (success) 1, (failed)0
  */
-unsigned int check_delim(char c, const char *delim)
+unsigned int _check_delim(char c, const char *delim)
 {
 	while (*delim != '\0')
 	{
