@@ -24,4 +24,10 @@ char *_loadpath(char *command);
 int _runbuiltins(char **argv, char *str);
 
 
+
+
+
+
+
+
 #endif
