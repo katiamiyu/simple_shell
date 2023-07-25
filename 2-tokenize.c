@@ -21,14 +21,14 @@ char **_tokenize(char *str)
 	}
 
 	/* populate array with tokens */
-	token = strtok(str, delim);
+	token = _strtok(str, delim);
 
 	while (token)
 	{
 		tokens[x] = token;
 		x++;
 
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 
 	tokens[x] = NULL;
