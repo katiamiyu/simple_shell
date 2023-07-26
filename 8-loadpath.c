@@ -15,8 +15,7 @@ char *_loadpath(char *token)
 	{
 		path_cpy = strdup(path);
 		token_len = strlen(token);
-		path_token = strtok(path_cpy, ":");
-
+		path_token = _strtok(path_cpy, ":");
 		while (path_token != NULL)
 		{
 			dir_len = strlen(path_token);
@@ -33,7 +32,8 @@ char *_loadpath(char *token)
 			else
 			{
 				free(file_path);
-				path_token = strtok(NULL, ":");
+				file_path = NULL;
+				path_token = _strtok(NULL, ":");
 			}
 		}
 		free(path_cpy);

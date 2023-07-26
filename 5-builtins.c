@@ -1,5 +1,4 @@
 #include "main_shell.h"
-#include <errno.h>
 
 /**
  * _exit_shell - terminates the shell

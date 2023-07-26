@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <errno.h>
 
 int _strcmp(char *str1, char *str2);
 char **_tokenize(char *str);

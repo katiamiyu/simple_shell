@@ -1,7 +1,5 @@
 #include "main_shell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 /**
  * _runbuiltins - executes builtin commands
  * @argv: array of input commands (parameters)
