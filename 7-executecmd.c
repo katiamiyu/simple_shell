@@ -22,6 +22,8 @@ int _execmd(char **argv, char *str)
 		{
 			perror(str);
 		}
+		/* free memory in _loadpath */
+		free(token_path);
 	}
 	return (0);
 }

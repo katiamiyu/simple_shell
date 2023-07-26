@@ -8,10 +8,6 @@
 #include "main_shell.h"
 
 
-#include <stdio.h>
-#include <stdlib.h>
-
-
 int main(int argc, char **argv)
 {
 
@@ -38,8 +34,13 @@ int main(int argc, char **argv)
 		args = _tokenize(buffer);
 		_runbuiltins(args, argv[0]);
 
+		/* Deallocate memory */
 		free(args);
 		free(buffer);
+
+		/* Release back memory to system */
+		buffer = NULL;
+		args = NULL;
 	}
 
 	return (0);
