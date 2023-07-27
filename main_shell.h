@@ -13,6 +13,8 @@ int _strcmp(char *str1, char *str2);
 char **_tokenize(char *str);
 int _exit_shell(char **argv);
 int _cd_shell(char **argv);
+int _runInterMode(char **argv);
+void _runBatchMode(char **argv);
 int _execmd(char **argv, char *str);
 char *_loadpath(char *command);
 int _runbuiltins(char **argv, char *str);
