@@ -1,47 +1,24 @@
+#include "main_shell.h"
 /**
  * main - entry point of program
- * @argc: number of arguments
- * @argv: arguement vector
- * Return: 0 on sucsess
+ * @argc: argument counter
+ * @argv: vector pointer
+ * Return: Success (0), failed (1)
  */
-
-#include "main_shell.h"
-
-
 int main(int argc, char **argv)
 {
-
-	/* variables */
-	char  *buffer = NULL;
-	char **args = NULL;
-	size_t len = 0;
-	ssize_t read;
-
-	(void)argc;
-
-	while (1)
+	if (!(argc < 2))
 	{
-		printf("($) ");
-		read = _getline(&buffer, &len, stdin);
-
-		/* track eol condition */
-		if (read == -1)
-		{
-			free(buffer);
-			return (1);
-		}
-		/* tokenize input and load command */
-		args = _tokenize(buffer);
-		_runbuiltins(args, argv[0]);
-
-		/* Deallocate memory */
-		free(args);
-		free(buffer);
-
-		/* Release back memory to system */
-		buffer = NULL;
-		args = NULL;
+		printf("Usage: %s\n", argv[0]);
+		return (1);
 	}
-
+	if (isatty(STDIN_FILENO))
+	{
+		_runInterMode(argv);
+	}
+	else
+	{
+		_runBatchMode(argv);
+	}
 	return (0);
 }
