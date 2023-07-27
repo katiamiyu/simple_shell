@@ -36,9 +36,7 @@ void  _runInterMode(char **argv)
 			args = _tokenize(buffer);
 			_runbuiltins(args, argv[0]);
 			free(args);
-			args = NULL;
-			free(buffer);
-			buffer = NULL;
 		}
 	}
+	free(buffer);
 }
