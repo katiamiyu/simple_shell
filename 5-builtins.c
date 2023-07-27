@@ -7,13 +7,13 @@
  */
 int _exit_shell(char **argv)
 {
-	int exit_status = 0;
+	int status = 0;
 
 	if (argv[1] != NULL)
 	{
-		exit_status = atoi(argv[1]);
+		status = atoi(argv[1]);
 	}
-	exit(exit_status);
+	exit(status);
 }
 /**
  * _cd_shell - switch from pwd
