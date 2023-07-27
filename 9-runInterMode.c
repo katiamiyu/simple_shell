@@ -1,13 +1,13 @@
 /**
  * _runInterMode - run interactive commands
  * @argv: arguement vector
- * Return: 0 on sucsess
+ * Return: void
  */
 
 #include "main_shell.h"
 
 
-int _runInterMode(char **argv)
+void  _runInterMode(char **argv)
 {
 
 	/* variables */
@@ -24,19 +24,21 @@ int _runInterMode(char **argv)
 		/* track eol condition */
 		if (read <= 0)
 		{
-			printf("\n:");
 			free(buffer);
 			break;
 		}
 		/* tokenize input and load command */
 		if (read != EOF)
 		{
+			if (strcmp(buffer, "exit") == 0)
+				break;
+
 			args = _tokenize(buffer);
 			_runbuiltins(args, argv[0]);
 			free(args);
+			args = NULL;
+			free(buffer);
+			buffer = NULL;
 		}
 	}
-
-	free(buffer);
-	return (0);
 }

@@ -26,6 +26,7 @@ void _runBatchMode(char **argv)
 		args = _tokenize(buffer);
 		_runbuiltins(args, argv[0]);
 		free(args);
+		args = NULL;
 	}
 
 	free(buffer);

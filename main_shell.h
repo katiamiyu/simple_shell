@@ -6,6 +6,7 @@
 #include <stddef.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include <sys/stat.h>
 #include <errno.h>
 
@@ -13,10 +14,12 @@ int _strcmp(char *str1, char *str2);
 char **_tokenize(char *str);
 int _exit_shell(char **argv);
 int _cd_shell(char **argv);
-int _runInterMode(char **argv);
+void _runInterMode(char **argv);
 void _runBatchMode(char **argv);
 int _execmd(char **argv, char *str);
 char *_loadpath(char *command);
+int _childprocess(pid_t pid);
+int _runchildprocess(char **argv, char *str);
 int _runbuiltins(char **argv, char *str);
 unsigned int _check_delim(char c, const char *delim);
 char *_strtok(char *str, const char *delim);
