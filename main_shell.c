@@ -22,26 +22,23 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		printf("($) ");
-		read = _getline(&buffer, &len, stdin);
+		read = getline(&buffer, &len, stdin);
 
 		/* track eol condition */
 		if (read == -1)
 		{
 			free(buffer);
-			return (1);
+			break;
 		}
 		/* tokenize input and load command */
-		args = _tokenize(buffer);
-		_runbuiltins(args, argv[0]);
-
-		/* Deallocate memory */
-		free(args);
-		free(buffer);
-
-		/* Release back memory to system */
-		buffer = NULL;
-		args = NULL;
+		if (read != EOF)
+		{
+			args = _tokenize(buffer);
+			_runbuiltins(args, argv[0]);
+		}
 	}
+	free(args);
+	free(buffer);
 
 	return (0);
 }

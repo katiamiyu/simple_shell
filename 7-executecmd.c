@@ -7,23 +7,35 @@
  */
 int _execmd(char **argv, char *str)
 {
-	char *token = NULL;
+	int status;
 	char *token_path = NULL;
 
-	if (argv)
+	if ((int) strcspn(argv[0], "/") == 0)
 	{
-		/* load command */
-		token = argv[0];
-
+		status = execve(argv[0], argv, NULL);
+	}
+	else if ((int) strcspn(argv[0], ".") == 0)
+	{
+		status = execve(argv[0], argv, NULL);
+	}
+	else
+	{
 		/* add path to command */
-		token_path = _loadpath(token);
-
-		if (execve(token_path, argv, NULL) == -1)
-		{
-			perror(str);
-		}
-		/* free memory in _loadpath */
+		token_path = _loadpath(argv[0]);
+		status = execve(token_path, argv, NULL);
 		free(token_path);
 	}
-	return (0);
+	if (status == -1)
+	{
+		if (errno == ENOENT)
+		{
+			fprintf(stderr, "%s: %d: %s: not found\n", str, errno, argv[0]);
+			fflush(stderr);
+			exit(127);
+		}
+		else
+			perror("execve");
+		exit(1);
+	}
+	return (status);
 }

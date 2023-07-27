@@ -7,9 +7,13 @@
  */
 int _exit_shell(char **argv)
 {
-	(void)argv;
+	int exit_status = 0;
 
-	exit(EXIT_SUCCESS);
+	if (argv[1] != NULL)
+	{
+		exit_status = atoi(argv[1]);
+	}
+	exit(exit_status);
 }
 /**
  * _cd_shell - switch from pwd
@@ -20,7 +24,7 @@ int _cd_shell(char **argv)
 {
 	if (argv[1] == NULL)
 	{
-		fprintf(stderr, "err: wrong argument\n");
+		fprintf(stderr, ": wrong argument\n");
 		return (1);
 	}
 
