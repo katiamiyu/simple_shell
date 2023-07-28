@@ -16,9 +16,9 @@ void _runBatchMode(char **argv)
 	size_t len = 0;
 	ssize_t read;
 
-	read = getline(&buffer, &len, stdin);
-	while (read != -1)
+	while ((read = getline(&buffer, &len, stdin)) != -1)
 	{
+		buffer[strcspn(buffer, "\n")] = '\0';
 		if (strcmp(buffer, "exit") == 0)
 		{
 			break;

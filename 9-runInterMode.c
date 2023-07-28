@@ -30,6 +30,7 @@ void  _runInterMode(char **argv)
 		/* tokenize input and load command */
 		if (read != EOF)
 		{
+			buffer[strcspn(buffer, "\n")] = '\0';
 			if (strcmp(buffer, "exit") == 0)
 				break;
 
