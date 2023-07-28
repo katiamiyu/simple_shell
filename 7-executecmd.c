@@ -22,6 +22,12 @@ int _execmd(char **argv, char *str)
 	{
 		/* add path to command */
 		token_path = _loadpath(argv[0]);
+		if (token_path == NULL) /* Check if returned pointer is NULL */
+		{
+			fprintf(stderr, "%s: %s: command not found\n", str, argv[0]);
+			fflush(stderr);
+			exit(127);
+		}
 		status = execve(token_path, argv, NULL);
 		free(token_path);
 	}
