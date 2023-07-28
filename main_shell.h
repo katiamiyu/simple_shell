@@ -26,7 +26,4 @@ int _runbuiltins(char **argv, char *str);
 unsigned int _check_delim(char c, const char *delim);
 char *_strtok(char *str, const char *delim);
 ssize_t _getline(char **ptr_buff, size_t *ptr_size, FILE *input_stream);
-ssize_t check_getline_buffer(char **ptr_buff, ssize_t buff_size);
-ssize_t resize_getline_buffer(char **ptr_buff, ssize_t len, char *new_buffer, ssize_t buff_size);
-
 #endif
